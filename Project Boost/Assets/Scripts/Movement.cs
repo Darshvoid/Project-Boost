@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    // PARAMETERS - for tuning, typically set in the editor
+    // CACHE - e.g. references for readibility or speed
+    // STATE - private instance (member) variables
     Rigidbody rb;
     [SerializeField]float upwardThrust = 0.1f;
     [SerializeField]float rotationThrust = 0.1f;
-    AudioSource audioData;
+    [SerializeField]AudioClip mainEngine;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>(); 
-        audioData = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,15 +32,15 @@ public class Movement : MonoBehaviour
        if (Input.GetKey(KeyCode.Space))
        {
            rb.AddRelativeForce(Vector3.up * upwardThrust * Time.deltaTime);
-           if (!audioData.isPlaying)
+           if (!audioSource.isPlaying)
            {
-               audioData.Play();
+               audioSource.PlayOneShot(mainEngine);
            }
            
        }
        else 
        {
-           audioData.Stop();
+           audioSource.Stop();
        }
     }
 
@@ -44,11 +48,11 @@ public class Movement : MonoBehaviour
     {
        if(Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationThrust); 
+            ApplyRotation(-rotationThrust); 
         }
         else if (Input.GetKey(KeyCode.D))
        {
-           ApplyRotation(-rotationThrust);
+           ApplyRotation(rotationThrust);
        }
     }
     void ApplyRotation(float rotationThisFrame)
@@ -56,7 +60,5 @@ public class Movement : MonoBehaviour
         rb.freezeRotation = true; //frezing rotaiton so we can manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         rb.freezeRotation = false; //unfreezing rotation so the physics system can take over
-
-        
     }
 }

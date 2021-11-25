@@ -7,10 +7,13 @@ public class Movement : MonoBehaviour
     Rigidbody rb;
     [SerializeField]float upwardThrust = 0.1f;
     [SerializeField]float rotationThrust = 0.1f;
+    AudioSource audioData;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();    
+        rb = GetComponent<Rigidbody>(); 
+        audioData = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +28,15 @@ public class Movement : MonoBehaviour
        if (Input.GetKey(KeyCode.Space))
        {
            rb.AddRelativeForce(Vector3.up * upwardThrust * Time.deltaTime);
+           if (!audioData.isPlaying)
+           {
+               audioData.Play();
+           }
+           
+       }
+       else 
+       {
+           audioData.Stop();
        }
     }
 
@@ -32,7 +44,7 @@ public class Movement : MonoBehaviour
     {
        if(Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationThrust);
+            ApplyRotation(rotationThrust); 
         }
         else if (Input.GetKey(KeyCode.D))
        {
@@ -44,5 +56,7 @@ public class Movement : MonoBehaviour
         rb.freezeRotation = true; //frezing rotaiton so we can manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         rb.freezeRotation = false; //unfreezing rotation so the physics system can take over
+
+        
     }
 }

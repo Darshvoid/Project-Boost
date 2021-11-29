@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     [SerializeField]float upwardThrust = 0.1f;
     [SerializeField]float rotationThrust = 0.1f;
     [SerializeField]AudioClip mainEngine;
+    [SerializeField]ParticleSystem mainEngineParticles, leftEngineParticles, rightEngineParticles;
     AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -31,15 +32,17 @@ public class Movement : MonoBehaviour
     {
        if (Input.GetKey(KeyCode.Space))
        {
+           mainEngineParticles.Play();
            rb.AddRelativeForce(Vector3.up * upwardThrust * Time.deltaTime);
            if (!audioSource.isPlaying)
            {
                audioSource.PlayOneShot(mainEngine);
-           }
+           }   
            
        }
        else 
        {
+           mainEngineParticles.Stop();
            audioSource.Stop();
        }
     }
@@ -59,6 +62,6 @@ public class Movement : MonoBehaviour
     {
         rb.freezeRotation = true; //frezing rotaiton so we can manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
-        rb.freezeRotation = false; //unfreezing rotation so the physics system can take over
+        rb.freezeRotation = false; //unfreezing rotation so the physics system can take ove
     }
 }

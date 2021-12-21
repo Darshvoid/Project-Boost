@@ -31,37 +31,79 @@ public class Movement : MonoBehaviour
     void ProcessThrust()
     {
        if (Input.GetKey(KeyCode.Space))
-       {
-           mainEngineParticles.Play();
-           rb.AddRelativeForce(Vector3.up * upwardThrust * Time.deltaTime);
-           if (!audioSource.isPlaying)
-           {
-               audioSource.PlayOneShot(mainEngine);
-           }   
-           
-       }
-       else 
-       {
-           mainEngineParticles.Stop();
-           audioSource.Stop();
-       }
+        {
+            StartThursting();
+        }
+        else
+        {
+            StopThrusting();
+        }
     }
 
-    void ProcessRotation()
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainEngineParticles.Stop();
+    }
+  void ProcessRotation()
     {
        if(Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(-rotationThrust); 
+            RotateLeft();
         }
         else if (Input.GetKey(KeyCode.D))
-       {
-           ApplyRotation(rotationThrust);
-       }
+        {
+            RotateRight();
+        }
+        else
+        {
+            StopRotating();
+        }
     }
+
+
+    void StartThursting()
+    {
+        rb.AddRelativeForce(Vector3.up * upwardThrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+        if (!mainEngineParticles.isPlaying)
+        {
+            mainEngineParticles.Play();
+        }
+    }
+
+
+    private void StopRotating()
+    {
+        rightEngineParticles.Stop();
+        leftEngineParticles.Stop();
+    }
+
+    private void RotateRight()
+    {
+        ApplyRotation(rotationThrust);
+        if (!leftEngineParticles.isPlaying)
+        {
+            leftEngineParticles.Play();
+        }
+    }
+
+    private void RotateLeft()
+    {
+        ApplyRotation(-rotationThrust);
+        if (!rightEngineParticles.isPlaying)
+        {
+            rightEngineParticles.Play();
+        }
+    }
+
     void ApplyRotation(float rotationThisFrame)
     {
         rb.freezeRotation = true; //frezing rotaiton so we can manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
-        rb.freezeRotation = false; //unfreezing rotation so the physics system can take ove
+        rb.freezeRotation = false; //unfreezing rotation so the physics system can take over
     }
 }

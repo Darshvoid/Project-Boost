@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!198 &274994522 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7765244243267889300, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+  m_PrefabInstance: {fileID: 672668822}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &293477028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,7 +231,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.1731517, y: 1}
+    m_SensorSize: {x: 1.1714836, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -305,6 +310,34 @@ PrefabInstance:
     - target: {fileID: 5118273587711614854, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496019900921319764, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+      propertyPath: leftEngineParticles
+      value: 
+      objectReference: {fileID: 1290745575}
+    - target: {fileID: 5496019900921319764, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+      propertyPath: mainEngineParticles
+      value: 
+      objectReference: {fileID: 1280569969}
+    - target: {fileID: 5496019900921319764, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+      propertyPath: rightEngineParticles
+      value: 
+      objectReference: {fileID: 274994522}
+    - target: {fileID: 5496019900921319766, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+      propertyPath: onWinParticle
+      value: 
+      objectReference: {fileID: 1397162624}
+    - target: {fileID: 5496019900921319766, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+      propertyPath: onCollisionParticle
+      value: 
+      objectReference: {fileID: 2083364372}
+    - target: {fileID: 6420053438313062511, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+      propertyPath: m_Name
+      value: Left Thruster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601952505635507232, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+      propertyPath: m_Name
+      value: Right Thruster
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
@@ -637,6 +670,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &1280569969 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198100719021478096, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+  m_PrefabInstance: {fileID: 672668822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1290745575 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6603582654900487387, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+  m_PrefabInstance: {fileID: 672668822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1397162624 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198631065823590313, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+  m_PrefabInstance: {fileID: 672668822}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1679442378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,6 +859,11 @@ PrefabInstance:
 --- !u!4 &2038729334 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5118273587711614854, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
+  m_PrefabInstance: {fileID: 672668822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2083364372 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198204746432761483, guid: 9d0f098ed1b9049449a865895f06c1b9, type: 3}
   m_PrefabInstance: {fileID: 672668822}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1260353401618238063

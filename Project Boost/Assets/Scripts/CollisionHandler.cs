@@ -8,13 +8,30 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField]ParticleSystem onCollisionParticle, onWinParticle;
     AudioSource audioSource;
     bool isTransitioning = false;
+    bool collisionDisabled = false;
      void Start() 
      {
+         
      audioSource = GetComponent<AudioSource>();   
+    }
+   void Update() 
+   {
+        CheatKeys();
+    }
+     void CheatKeys()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        else if(Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled;
+        }
     }
     void OnCollisionEnter(Collision other) 
     {
-        if (isTransitioning){return;}
+        if (isTransitioning || collisionDisabled){return;}
         switch(other.gameObject.tag) 
         {
             case "Friendly":
@@ -64,4 +81,5 @@ public class CollisionHandler : MonoBehaviour
         }
         SceneManager.LoadScene(nextSceneIndex);
     }
+
 }
